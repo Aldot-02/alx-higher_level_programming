@@ -1,9 +1,11 @@
 #!/usr/bin/python3
+import sys
+import urllib.request
 
 
-if __name__ = "__main__":
-    import urllib.request as response
-    from sys import argv
-    request = response.Request(argv[1])
-    with response.urlopen(request) as result:
-        print(result.headers.get("X-Request-Id")
+if __name__ == "__main__":
+    url = sys.argv[1]
+
+    request = urllib.request.Request(url)
+    with urllib.request.urlopen(request) as response:
+        print(dict(response.headers).get("X-Request-Id"))
